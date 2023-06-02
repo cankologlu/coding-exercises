@@ -19,6 +19,8 @@ const removeElement = (nums, val) => {
   return nums.length;
 }
 
+let test = 1;
+
 const numbers = [3,2,3,3,2,3];
 const value = 3;
 
