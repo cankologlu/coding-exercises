@@ -25,3 +25,14 @@ const searchInsert = (nums, target) => {
   }
   return index;
 }
+
+
+// alternatively 
+/*
+for(let x = 0;x<nums.length;x++){
+        if(target<nums[x] || target==nums[x]){
+            return x
+        }
+    }
+    return nums.length
+*/
