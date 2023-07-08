@@ -15,20 +15,20 @@ class Media {
     return this._isCheckedOut;
   }
   get title() {
-    return this._title
+    return this._title;
   }
-  get ratings () {
-    return this._ratings
+  get ratings() {
+    return this._ratings;
   }
-  set isCheckedOut (is) {
+  set isCheckedOut(is) {
     this._isCheckedOut = is;
   }
   getAverageRating() {
     if (this._ratings.length === 0) {
       console.log("No ratings yet!");
-    } else { 
-      let averageRating = this._ratings.reduce((acc,curr) =>  acc );
-      return Math.floor(averageRating/this._ratings.length);
+    } else {
+      let averageRating = this._ratings.reduce((acc, curr) => acc);
+      return Math.floor(averageRating / this._ratings.length);
     }
   }
   toggleCheckoutStatus() {
@@ -50,43 +50,75 @@ class Book extends Media {
     this._author = author;
     this._pages = pages;
   }
-  get author () {
-    return this._author
+  get author() {
+    return this._author;
   }
-  get pages () {
-    return this._pages
+  get pages() {
+    return this._pages;
   }
 }
 
 class Movie extends Media {
-  constructor (title, director, runtime) {
+  constructor(title, director, runtime) {
     super(title);
     this._director = director;
     this._runtime = runtime;
   }
-  get director () {
+  get director() {
     return this._director;
   }
-  get runtime () {
+  get runtime() {
     return this._runtime;
   }
 }
 
 class CD extends Media {
-  constructor (title, artist, songs) {
-    super(title)
+  constructor(title, artist, songs) {
+    super(title);
     this._artist = artist;
-    this._songs = songs
+    this._songs = songs;
   }
-  get artist () {
+  get artist() {
     return this._artist;
   }
-  get songs () {
+  get songs() {
     return this._songs;
+  }
+  shuffle() {
+  if (this._songs.length === 0 || this._songs.length === 1) {
+    console.log(`There ${this._songs.length === 0 ? "are no songs": "is only 1 song"} in this album`)
+  }
+    let shuffledSongs = []; //array we return
+    let shuffleOrder = []; //array of random numbers to shuffle songs from and follow to push on the list
+
+// Condition to keep on addin into shuffleOrder random numbers
+  while (shuffleOrder.length < this._songs.length) {
+    // console.log("i am runing")
+  let randomNumber = Math.floor(Math.random() * this._songs.length)
+  // console.log("shuffleOrderlength is:", shuffleOrder.length)
+  // console.log("songs length:", this._songs.length)
+  // console.log("shuffleOrder is:", shuffleOrder)
+  // console.log("randomNumber is:",randomNumber)
+//Condition to check if the generated number exist in our list
+ if (!shuffleOrder.includes(randomNumber)) {
+   shuffleOrder.push(randomNumber)
+ }
+continue;
+}
+// Once while loop is done use forEach to push the songs into shuffledSongs array
+// console.log("shuffleOrder before foreEach",shuffleOrder)
+
+shuffleOrder.forEach (songOrderNumber => {shuffledSongs.push(this._songs[songOrderNumber]); });
+console.log(shuffleOrder)
+return shuffledSongs;
   }
 }
 
-const historyOfEverything = new Book('A short History of Nearly Everything','Bill Bryson', 544)
+const historyOfEverything = new Book(
+  "A short History of Nearly Everything",
+  "Bill Bryson",
+  544
+);
 
 // console.log(historyOfEverything.isCheckedOut);
 // historyOfEverything.isCheckedOut = true;
@@ -107,17 +139,21 @@ const historyOfEverything = new Book('A short History of Nearly Everything','Bil
 // console.log(historyOfEverything.ratings);
 // console.log(historyOfEverything.getAverageRating())
 
-const speed = new Movie('Speed', 'Jan de Bont', 116)
+const speed = new Movie("Speed", "Jan de Bont", 116);
 
-console.log(speed.isCheckedOut)
-speed.toggleCheckoutStatus()
-console.log(speed.isCheckedOut)
-speed.isCheckedOut = false
-console.log(speed.isCheckedOut)
-speed.addRating(1)
-speed.addRating(1)
-speed.addRating(5)
-console.log(speed.ratings)
-console.log(speed.getAverageRating())
+// console.log(speed.isCheckedOut);
+// speed.toggleCheckoutStatus();
+// console.log(speed.isCheckedOut);
+// speed.isCheckedOut = false;
+// console.log(speed.isCheckedOut);
+// speed.addRating(1);
+// speed.addRating(1);
+// speed.addRating(5);
+// console.log(speed.ratings);
+// console.log(speed.getAverageRating());
 
+const album = new CD ("ride the lightning", "metallica", ["fight fire with fire", 'ride the lightning', "fade to black"])
+
+console.log(album.songs)
+console.log(album.shuffle())
 
