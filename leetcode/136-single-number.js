@@ -26,3 +26,6 @@ const singleNumber = (nums) => {
 let testArrOne = [4,1,2,1,2]
 
 console.log(singleNumber(testArrOne));
+
+//Time complexity O(n) 
+//This code works under the condition, repeating elements only repeat twice not more otherwise wouldn't work
