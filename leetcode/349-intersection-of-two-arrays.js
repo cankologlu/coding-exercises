@@ -15,21 +15,19 @@ numsOne = [4,9,5], numsTwo = [9,4,9,8,4]
   return intersecting;
 }*/
 
-// Time Complexity O(n*m)
+// Time Complexity O(n+m)
 const intersection = (nums1, nums2) => {
   let intersecting = [];
-  let seen = {}; // Hash set to store the elements seen in nums1
+  let seen = {}; 
 
-  // Populate the hash set with elements from nums1
   nums1.forEach((num) => {
     seen[num] = true;
   });
 
-  // Iterate over each element in nums2
   nums2.forEach((num) => {
     if (seen[num]) {
       intersecting.push(num);
-      delete seen[num]; // Optional: To ensure distinct elements in the result
+      delete seen[num]; 
     }
   });
 
